@@ -21,6 +21,14 @@ $no=1;
           </div> --}}
         <div class="form-group">
           <label for="exampleInputEmail1">Nama Siswa</label>
+            <select class="form-control" name="Kelas">
+                @foreach ($data as $d)
+                <option value="{{$d->Kelas_id}}">{{$d->Nama}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Nama Siswa</label>
           <input type="text" class="form-control"  placeholder="Masukan Nama Siswa" name="Nama">
         </div>
         <div class="form-group">

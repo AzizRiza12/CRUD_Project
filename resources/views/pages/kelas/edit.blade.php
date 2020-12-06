@@ -9,7 +9,7 @@ $no=1;
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-    <form method="POST" action="{{ route('kelas.store',[$data->Kelas_id]) }}">
+    <form method="POST" action="{{ route('kelas.update',[$data->Kelas_id]) }}">
         @csrf
         <input type="hidden" name="_method" value="PUT">
         <div class="form-group">
