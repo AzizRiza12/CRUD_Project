@@ -15,7 +15,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $data = Siswa::all();
+        $data = Siswa::with('Kelas')->get();
         return view('pages/Siswa/index')->with([
             'data' => $data,
         ]);
@@ -69,9 +69,12 @@ class SiswaController extends Controller
      * @param  \App\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Siswa $siswa)
+    public function edit($Siswa_id)
     {
-        //
+        $data = Siswa::findOrFail($Siswa_id);
+        return view('pages/Siswa/edit')->with([
+            'data'=>$data
+        ]);
     }
 
     /**
@@ -81,9 +84,16 @@ class SiswaController extends Controller
      * @param  \App\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Siswa $siswa)
+    public function update(Request $request, $Siswa_id)
     {
-        //
+        $siswa = Siswa::findOrFail($Siswa_id);
+        $siswa->Kelas_id = $request->get('Kelas');
+        $siswa->Nama = $request->get('Nama');
+        $siswa->No = $request->get('Nomor');
+        $siswa->NIS = $request->get('NIS');
+        $siswa->save();
+
+        return redirect()->route('Siswa.index');
     }
 
     /**
@@ -92,8 +102,11 @@ class SiswaController extends Controller
      * @param  \App\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Siswa $siswa)
+    public function destroy($Siswa_id)
     {
-        //
+        $data = Siswa::findOrFail($Siswa_id);
+        $data->delete();
+
+        return redirect()->route('Siswa.index');
     }
 }

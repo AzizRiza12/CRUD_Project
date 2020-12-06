@@ -14,7 +14,10 @@ class ListExtraSiswaController extends Controller
      */
     public function index()
     {
-        //
+        $data = List_Extra_Siswa::with('Extra', 'siswas')->get();
+        return view('pages/List/index')->with([
+            'data' => $data,
+        ]);
     }
 
     /**

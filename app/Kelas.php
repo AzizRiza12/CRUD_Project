@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     protected $table = 'kelas';
-    protected $primarikey ='Kelas_id';
+    protected $primaryKey ='Kelas_id';
+
+    public function Siswa()
+    {
+        return $this->hasMany(Siswa::class, 'Kelas_id' );
+    }
 }

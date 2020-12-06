@@ -18,9 +18,8 @@ $no=1;
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Siswa ID</th>
-                            <th>Kelas</th>
-                            <th>Nama Siswa</th>
+                            <th>ID Kelas</th>
+                            <th>Nama</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -28,12 +27,11 @@ $no=1;
                         @foreach ($data as $d)
                         <tr>
                             <td>{{$no++}}</td>
-                            <td>{{$d->Siswa_id}}</td>
-                            <td>{{$d->Kelas->Nama}}</td>
+                            <td>{{$d->Kelas_id}}</td>
                             <td>{{$d->Nama}}</td>
                             <td>
-                                <a href="{{ route('Siswa.edit', [$d->Siswa_id]) }}" class="btn btn-warning">Update</a>
-                                <form  action="{{ route('Siswa.destroy', [$d->Siswa_id]) }}" method="POST">
+                                <a href="{{ route('kelas.edit', [$d->Kelas_id]) }}" class="btn btn-warning">Update</a>
+                                <form  action="{{ route('kelas.destroy', [$d->Kelas_id]) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button type="submit" class="btn btn-danger">Delete</button>
